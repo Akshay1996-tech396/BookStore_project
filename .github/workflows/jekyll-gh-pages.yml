@@ -18,16 +18,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: Cache Bundler dependencies
-        uses: actions/cache@v3
         with:
-          path: vendor/bundle
-          key: ${{ runner.os }}-bundler-${{ hashFiles('**/Gemfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-bundler-
+          fetch-depth: 0
+
+      - name: Debug Repository Contents
+        run: ls -al
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
